@@ -1,11 +1,16 @@
 using System.Reflection;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 using StackExchange.Redis;
 using Texnokaktus.ProgOlymp.OpenTelemetry;
 using Texnokaktus.ProgOlymp.UserService.Converters;
+using Texnokaktus.ProgOlymp.UserService.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services
+       .AddDataAccess(optionsBuilder => optionsBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultDb")));
 
 var connectionMultiplexer = await ConnectionMultiplexer.ConnectAsync(builder.Configuration.GetConnectionString("DefaultRedis")!);
 builder.Services.AddSingleton<IConnectionMultiplexer>(connectionMultiplexer);
