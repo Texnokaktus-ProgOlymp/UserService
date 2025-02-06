@@ -10,6 +10,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Texnokaktus.ProgOlymp.UserS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Texnokaktus.ProgOlymp.UserService.Logic", "Texnokaktus.ProgOlymp.UserService.Logic\Texnokaktus.ProgOlymp.UserService.Logic.csproj", "{91792555-985C-48DF-8EF6-BD89AC6BEA59}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{66123728-B4FA-40DC-AF52-CDA4F9743E60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Texnokaktus.ProgOlymp.Common.Contracts", "modules\Common.Contracts\Texnokaktus.ProgOlymp.Common.Contracts\Texnokaktus.ProgOlymp.Common.Contracts.csproj", "{07008840-C06E-4692-9F83-04566F884A05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +40,12 @@ Global
 		{91792555-985C-48DF-8EF6-BD89AC6BEA59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91792555-985C-48DF-8EF6-BD89AC6BEA59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91792555-985C-48DF-8EF6-BD89AC6BEA59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07008840-C06E-4692-9F83-04566F884A05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07008840-C06E-4692-9F83-04566F884A05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07008840-C06E-4692-9F83-04566F884A05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07008840-C06E-4692-9F83-04566F884A05}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{07008840-C06E-4692-9F83-04566F884A05} = {66123728-B4FA-40DC-AF52-CDA4F9743E60}
 	EndGlobalSection
 EndGlobal
