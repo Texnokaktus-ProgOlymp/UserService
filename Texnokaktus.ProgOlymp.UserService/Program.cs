@@ -6,6 +6,8 @@ using StackExchange.Redis;
 using Texnokaktus.ProgOlymp.OpenTelemetry;
 using Texnokaktus.ProgOlymp.UserService.Converters;
 using Texnokaktus.ProgOlymp.UserService.DataAccess;
+using Texnokaktus.ProgOlymp.UserService.Endpoints;
+using Texnokaktus.ProgOlymp.UserService.Infrastructure;
 using Texnokaktus.ProgOlymp.UserService.Logic;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -53,5 +55,34 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapGroup("api/users");
+
+app.MapGroup("/api/regions").MapRegionEndpoints();
+
+/*
+await using (var scope = app.Services.CreateAsyncScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    await context.Database.EnsureDeletedAsync();
+    await context.Database.EnsureCreatedAsync();
+
+    await using var f = File.OpenRead(@"D:\kav128\Downloads\regions.json");
+    var jsonNode = JsonNode.Parse(f);
+    
+    context.Regions.AddRange(jsonNode.AsArray()
+                                     .Select(x => new Region
+                                      {
+                                          Id = x["Id"].GetValue<int>(),
+                                          Name = x["Name"].GetValue<string>(),
+                                          Order = x["Id"].GetValue<int>() switch
+                                          {
+                                              78 => 10,
+                                              47 => 9,
+                                              77 => 5,
+                                              _  => 0
+                                          }
+                                      }));
+    await context.SaveChangesAsync();
+}
+*/
 
 await app.RunAsync();
