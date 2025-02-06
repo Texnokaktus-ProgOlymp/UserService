@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Texnokaktus.ProgOlymp.UserS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Texnokaktus.ProgOlymp.UserService.DataAccess", "Texnokaktus.ProgOlymp.UserService.DataAccess\Texnokaktus.ProgOlymp.UserService.DataAccess.csproj", "{12419E84-E6F5-4A59-95D3-963929EFDE4F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Texnokaktus.ProgOlymp.UserService.Domain", "Texnokaktus.ProgOlymp.UserService.Domain\Texnokaktus.ProgOlymp.UserService.Domain.csproj", "{0550DE2F-4C92-4D69-AF06-988FC5C96FCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Texnokaktus.ProgOlymp.UserService.Logic", "Texnokaktus.ProgOlymp.UserService.Logic\Texnokaktus.ProgOlymp.UserService.Logic.csproj", "{91792555-985C-48DF-8EF6-BD89AC6BEA59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{12419E84-E6F5-4A59-95D3-963929EFDE4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12419E84-E6F5-4A59-95D3-963929EFDE4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12419E84-E6F5-4A59-95D3-963929EFDE4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0550DE2F-4C92-4D69-AF06-988FC5C96FCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0550DE2F-4C92-4D69-AF06-988FC5C96FCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0550DE2F-4C92-4D69-AF06-988FC5C96FCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0550DE2F-4C92-4D69-AF06-988FC5C96FCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91792555-985C-48DF-8EF6-BD89AC6BEA59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91792555-985C-48DF-8EF6-BD89AC6BEA59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91792555-985C-48DF-8EF6-BD89AC6BEA59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91792555-985C-48DF-8EF6-BD89AC6BEA59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

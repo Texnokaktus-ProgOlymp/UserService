@@ -6,11 +6,13 @@ using StackExchange.Redis;
 using Texnokaktus.ProgOlymp.OpenTelemetry;
 using Texnokaktus.ProgOlymp.UserService.Converters;
 using Texnokaktus.ProgOlymp.UserService.DataAccess;
+using Texnokaktus.ProgOlymp.UserService.Logic;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
-       .AddDataAccess(optionsBuilder => optionsBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultDb")));
+       .AddDataAccess(optionsBuilder => optionsBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultDb")))
+       .AddLogicServices();
 
 var connectionMultiplexer = await ConnectionMultiplexer.ConnectAsync(builder.Configuration.GetConnectionString("DefaultRedis")!);
 builder.Services.AddSingleton<IConnectionMultiplexer>(connectionMultiplexer);

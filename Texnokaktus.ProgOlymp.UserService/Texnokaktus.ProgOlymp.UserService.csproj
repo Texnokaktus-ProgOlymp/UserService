@@ -23,6 +23,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Texnokaktus.ProgOlymp.UserService.DataAccess\Texnokaktus.ProgOlymp.UserService.DataAccess.csproj" />
+      <ProjectReference Include="..\Texnokaktus.ProgOlymp.UserService.Logic\Texnokaktus.ProgOlymp.UserService.Logic.csproj" />
     </ItemGroup>
 
 </Project>
