@@ -1,4 +1,6 @@
+using System.Net;
 using System.Reflection;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -17,7 +19,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
        .AddDataAccess(optionsBuilder => optionsBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultDb")))
        .AddLogicServices()
-       .AddScoped<IRegistrationService, RegistrationService>();
+       .AddScoped<IRegistrationService, RegistrationService>()
+       .AddScoped<IAuthenticationService, CookieAuthenticationService>();
 
 var connectionMultiplexer = await ConnectionMultiplexer.ConnectAsync(builder.Configuration.GetConnectionString("DefaultRedis")!);
 builder.Services.AddSingleton<IConnectionMultiplexer>(connectionMultiplexer);
@@ -45,6 +48,33 @@ builder.Services
        .AddDataProtection(options => options.ApplicationDiscriminator = Assembly.GetEntryAssembly()?.GetName().Name)
        .PersistKeysToStackExchangeRedis(connectionMultiplexer);
 
+builder.Services
+       .AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        })
+        /*
+         * TODO Use JWT as soon as the PersonalService is rewritten into SPA + WEB APU
+         */
+       .AddCookie(options =>
+        {
+            options.ExpireTimeSpan = TimeSpan.FromDays(3 * 30);
+            options.Events.OnRedirectToLogin = redirectContext =>
+            {
+                redirectContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                return Task.CompletedTask;
+            };
+            options.Events.OnRedirectToAccessDenied = redirectContext =>
+            {
+                redirectContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                return Task.CompletedTask;
+            };
+        });
+
+builder.Services.AddAuthorization();
+
 var app = builder.Build();
 
 app.UseOpenTelemetryPrometheusScrapingEndpoint();
@@ -56,6 +86,9 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
     app.UseSwaggerUI(options => options.ConfigObject.Urls = [new() { Name = "v1", Url = "/openapi/v1.json" }]);
 }
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapGroup("api")
    .MapRegistrationEndpoints()
