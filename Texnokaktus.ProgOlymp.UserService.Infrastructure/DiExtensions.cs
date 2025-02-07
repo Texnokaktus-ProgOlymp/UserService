@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Texnokaktus.ProgOlymp.Common.Contracts.Grpc.ContestService;
-using Texnokaktus.ProgOlymp.Common.Contracts.Grpc.YandexContest;
 using Texnokaktus.ProgOlymp.UserService.Infrastructure.Clients;
 using Texnokaktus.ProgOlymp.UserService.Infrastructure.Clients.Abstractions;
 
@@ -11,11 +10,9 @@ public static class DiExtensions
 {
     public static IServiceCollection AddGrpcClients(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddGrpcClient<StateService.StateServiceClient>(options => options.Address = configuration.GetConnectionStringUri(nameof(StateService)));
-        services.AddGrpcClient<RegistrationService.RegistrationServiceClient>(options => options.Address = configuration.GetConnectionStringUri("YandexContestRegistrationService"));
+        services.AddGrpcClient<RegistrationService.RegistrationServiceClient>(options => options.Address = configuration.GetConnectionStringUri(nameof(RegistrationService)));
 
-        return services.AddScoped<IContestStateServiceClient, ContestStateServiceClient>()
-                       .AddScoped<IYandexContestRegistrationService, YandexContestRegistrationServiceClient>();
+        return services.AddScoped<IContestRegistrationService, ContestRegistrationServiceClient>();
     }
 
     private static Uri? GetGrpcConnectionString<TGrpcService>(this IConfiguration configuration) =>

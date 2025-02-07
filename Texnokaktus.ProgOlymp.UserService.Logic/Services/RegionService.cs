@@ -1,8 +1,8 @@
 using Texnokaktus.ProgOlymp.UserService.DataAccess.Services.Abstractions;
 using Texnokaktus.ProgOlymp.UserService.Domain;
-using Texnokaktus.ProgOlymp.UserService.Logic.Service.Abstractions;
+using Texnokaktus.ProgOlymp.UserService.Logic.Services.Abstractions;
 
-namespace Texnokaktus.ProgOlymp.UserService.Logic.Service;
+namespace Texnokaktus.ProgOlymp.UserService.Logic.Services;
 
 internal class RegionService(IUnitOfWork unitOfWork) : IRegionService
 {

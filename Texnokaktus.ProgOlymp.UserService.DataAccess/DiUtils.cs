@@ -14,7 +14,8 @@ public static class DiUtils
                                                    Action<DbContextOptionsBuilder> optionsAction) =>
         serviceCollection.AddDbContext<AppDbContext>(optionsAction)
                          .AddScoped<IUnitOfWork, UnitOfWork>()
-                         .AddScoped<IRegionRepository, RegionRepository>();
+                         .AddScoped<IRegionRepository, RegionRepository>()
+                         .AddScoped<IApplicationRepository, ApplicationRepository>();
 
     public static IHealthChecksBuilder AddDatabaseHealthChecks(this IHealthChecksBuilder builder) =>
         builder.AddDbContextCheck<AppDbContext>("database");

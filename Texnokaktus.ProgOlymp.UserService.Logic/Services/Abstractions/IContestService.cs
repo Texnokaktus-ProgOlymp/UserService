@@ -1,4 +1,4 @@
-namespace Texnokaktus.ProgOlymp.UserService.Logic.Service.Abstractions;
+namespace Texnokaktus.ProgOlymp.UserService.Logic.Services.Abstractions;
 
 public interface IContestService
 {

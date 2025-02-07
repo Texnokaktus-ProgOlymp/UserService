@@ -3,7 +3,7 @@ namespace Texnokaktus.ProgOlymp.UserService.DataAccess.Entities;
 public class Application
 {
     public int Id { get; init; }
-    public int ContestId { get; init; }
+    public required int ContestId { get; init; }
     public required string FirstName { get; init; }
     public required string LastName { get; init; }
     public required string? Patronym { get; init; }

@@ -6,6 +6,7 @@ namespace Texnokaktus.ProgOlymp.UserService.DataAccess.Context;
 public class AppDbContext(DbContextOptions options) : DbContext(options)
 {
     public DbSet<Region> Regions { get; set; }
+    public DbSet<Application> Applications { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

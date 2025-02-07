@@ -9,12 +9,15 @@ using Texnokaktus.ProgOlymp.UserService.DataAccess;
 using Texnokaktus.ProgOlymp.UserService.Endpoints;
 using Texnokaktus.ProgOlymp.UserService.Infrastructure;
 using Texnokaktus.ProgOlymp.UserService.Logic;
+using Texnokaktus.ProgOlymp.UserService.Services;
+using Texnokaktus.ProgOlymp.UserService.Services.Abstractions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
        .AddDataAccess(optionsBuilder => optionsBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultDb")))
-       .AddLogicServices();
+       .AddLogicServices()
+       .AddScoped<IRegistrationService, RegistrationService>();
 
 var connectionMultiplexer = await ConnectionMultiplexer.ConnectAsync(builder.Configuration.GetConnectionString("DefaultRedis")!);
 builder.Services.AddSingleton<IConnectionMultiplexer>(connectionMultiplexer);
@@ -54,9 +57,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(options => options.ConfigObject.Urls = [new() { Name = "v1", Url = "/openapi/v1.json" }]);
 }
 
-app.MapGroup("api/users");
-
-app.MapGroup("/api/regions").MapRegionEndpoints();
+app.MapGroup("api")
+   .MapRegistrationEndpoints()
+   .MapRegionEndpoints();
 
 /*
 await using (var scope = app.Services.CreateAsyncScope())

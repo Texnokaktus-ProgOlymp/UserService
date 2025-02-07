@@ -1,8 +1,8 @@
 using Microsoft.Extensions.Caching.Memory;
 using Texnokaktus.ProgOlymp.UserService.Domain;
-using Texnokaktus.ProgOlymp.UserService.Logic.Service.Abstractions;
+using Texnokaktus.ProgOlymp.UserService.Logic.Services.Abstractions;
 
-namespace Texnokaktus.ProgOlymp.UserService.Logic.Service;
+namespace Texnokaktus.ProgOlymp.UserService.Logic.Services;
 
 internal class RegionServiceCachingDecorator(IRegionService regionService, IMemoryCache memoryCache) : IRegionService
 {
